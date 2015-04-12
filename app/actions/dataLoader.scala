@@ -78,7 +78,8 @@ object dataLoader {
                   val x = actions.databaseFunction.insertDataToDatabase(listOfSummary)
                 }
                 else {
-                  
+                   actions.databaseFunction.updateMinValueDataToDatabase(listOfSummary, avg)
+                   actions.databaseFunction.updateMaxValueDataToDatabase(listOfSummary, avg)
                 }
                 //actions.databaseFunction.updateMinValueDataToDatabase(listOfSummary, 0.42)
            

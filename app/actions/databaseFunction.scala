@@ -40,14 +40,14 @@ object databaseFunction {
     
     def updateMinValueDataToDatabase(model: Any, minvalue: Double) {
      model match{
-      case x: models.ExchangeRateSummary =>  update(models.playDatabase.ExchangeRateSummaryTable){p => where(p.id === x.id) set(p.minvalue := minvalue, p.avgvalue := ((minvalue+ p.maxvalue.~) /2.0))}
+      case x: models.ExchangeRateSummary =>  update(models.playDatabase.ExchangeRateSummaryTable){p => where((p.name === x.name) and (p.minvalue gt minvalue)) set(p.minvalue := minvalue, p.avgvalue := ((minvalue+ p.maxvalue.~) /2.0))}
       case _ => Logger.info("Error in function(FillZeros) with type: I got type: " + model.toString)  
       }
     }  
     
     def updateMaxValueDataToDatabase(model: Any, maxvalue: Double) {
      model match{
-      case x: models.ExchangeRateSummary =>  update(models.playDatabase.ExchangeRateSummaryTable){p => where(p.id === x.id) set(p.maxvalue := maxvalue, p.avgvalue := ((maxvalue+ p.minvalue.~) /2.0))}
+      case x: models.ExchangeRateSummary =>  update(models.playDatabase.ExchangeRateSummaryTable){p => where((p.name === x.name) and (p.maxvalue lt maxvalue)) set(p.maxvalue := maxvalue, p.avgvalue := ((maxvalue+ p.minvalue.~) /2.0))}
       case _ => Logger.info("Error in function(FillZeros) with type: I got type: " + model.toString)  
       }
     }
