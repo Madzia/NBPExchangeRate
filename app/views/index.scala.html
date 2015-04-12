@@ -1,0 +1,19 @@
+@(exchangeRateSummary: List[models.ExchangeRateSummary])
+
+@main("Home") {
+      <table>
+      
+      
+      @exchangeRateSummary.toList.map {race => 
+	        <table>
+	  <tr>
+	  <td>@race.name</td>
+	  <td><button class="btn" style="margin-left:10px; margin-bottom:15px; background: linear-gradient(to top, #5f9ce6 10%, #99c3f6 90%); color: white" onClick="drawPieChartRace('@race.coderate')">@race.coderate</button><td>
+	  <td>@race.minvalue</td>
+	  <td>@race.maxvalue</td>
+	  <td>@race.avgvalue</td>
+	  </tr>
+	}	
+	</table>	
+
+}

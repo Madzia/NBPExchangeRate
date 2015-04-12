@@ -1,0 +1,37 @@
+@(message: exchangeRateSummary: List[ExchangeRateSummary])
+
+@main("Home") {
+
+		<div class="hero-unit" style="background-color: white" align = "Center">
+        <img src="@routes.Assets.at("images/banner.jpg")" style alt="">
+        </div>
+
+      <div class="row">
+        <div class="span4">
+          <h2>Map</h2>
+		<p> Take a look at map to see info about breast cancer given for every state</p>
+		<p><a class="btn" style="background: linear-gradient(to top, #5f9ce6 10%, #99c3f6 90%); color: #efefef" href="/insert">US Map &raquo;</a></p>
+        </div>
+        <div class="span4">
+          <h2>Form</h2>
+          <p>Input test results into our form to calculate ratio of malignacy of breast cancer and chance of cure</p>
+          <p><a class="btn" style="background: linear-gradient(to top, #5f9ce6 10%, #99c3f6 90%); color: #efefef" href="/form">Input test results &raquo;</a></p>
+       </div>
+        <div class="span4">
+          <h2>Statistics</h2>
+          <p>We prepared visualization on pie charts that shows age categories for given race.</p>
+          <p><a class="btn" style="background: linear-gradient(to top, #5f9ce6 10%, #99c3f6 90%); color: #efefef" href="/statisticRace">Statistics &raquo;</a></p>
+        </div>
+      </div>
+      
+      <table>
+      @races.map {race => 
+	  <tr>@race.map {element =>
+	  <td>@element</td>
+	  }
+	  <td><button class="btn" style="margin-left:10px; margin-bottom:15px; background: linear-gradient(to top, #5f9ce6 10%, #99c3f6 90%); color: white" onClick="drawPieChartRace('@race')">@race</button><td>
+	  </tr>
+	}	
+	</table>
+
+}
